@@ -6,9 +6,9 @@ public interface FileElement {
 
     String getName();
 
-    Date getDate();
+    String getDate();
 
-    Double getSize();
+    String getSize();
 
     String getPath();
 }

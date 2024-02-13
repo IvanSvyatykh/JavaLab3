@@ -1,18 +1,16 @@
 package org.example.Model;
 
-import java.util.Date;
-
-public class File implements FileElement {
+public class Element implements FileElement {
 
     private String path;
     private String name;
-    private Date date;
-    private Double size;
+    private String date;
+    private String size;
 
-    public File(String name, Date date, Double size, String path) {
+    public Element(String name, Long date, Long size, String path) {
         this.name = name;
-        this.date = date;
-        this.size = size;
+        this.date = date.toString();
+        this.size = size.toString();
         this.path = path;
     }
 
@@ -22,17 +20,17 @@ public class File implements FileElement {
     }
 
     @Override
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
     @Override
-    public Double getSize() {
+    public String getSize() {
         return size;
     }
 
     @Override
     public String getPath() {
-        return path;
+        return path + "\\" + name;
     }
 }
