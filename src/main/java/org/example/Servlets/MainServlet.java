@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet(urlPatterns = {"/"})
+@WebServlet(urlPatterns = {"/files"})
 public class MainServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)

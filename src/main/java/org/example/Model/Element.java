@@ -1,5 +1,8 @@
 package org.example.Model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Element implements FileElement {
 
     private String path;
@@ -9,14 +12,20 @@ public class Element implements FileElement {
 
     public Element(String name, Long date, Long size, String path) {
         this.name = name;
-        this.date = date.toString();
-        this.size = size.toString();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
+        this.date = dateFormat.format(new Date(date)).toString();
+        if (size == 0) {
+            this.size = "";
+        } else {
+            this.size = size.toString() + " B";
+        }
+
         this.path = path;
     }
 
     @Override
     public String getName() {
-        return name+"/";
+        return size.equals("") ? name + "/" : name;
     }
 
     @Override
@@ -31,6 +40,6 @@ public class Element implements FileElement {
 
     @Override
     public String getPath() {
-        return path + "\\" + name;
+        return path;
     }
 }

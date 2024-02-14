@@ -16,8 +16,15 @@ public class FileService {
         List<FileElement> elements = new ArrayList<>();
 
         for (int i = 0; i < files.size(); i++) {
-            elements.add(new Element(files.get(i).getName(), files.get(i).lastModified(),
-                    files.get(i).length(), files.get(i).getPath()));
+            if (files.get(i).isDirectory()) {
+                elements.add(new Element(files.get(i).getName(), files.get(i).lastModified(),
+                        0l, files.get(i).getPath()));
+            }
+            else{
+                elements.add(new Element(files.get(i).getName(), files.get(i).lastModified(),
+                        files.get(i).length(), files.get(i).getPath()));
+            }
+
         }
 
         return elements;

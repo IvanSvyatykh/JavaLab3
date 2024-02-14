@@ -8,7 +8,7 @@
 <body>
 <h1>Страница создана:${generationTime}</h1>
 <h2>Список файлов и папок в текущей директории: ${currentDir}</h2>
-<c:url value="index" var="upUrl">
+<c:url value="files" var="upUrl">
     <c:param name="path" value="${parentDirPath}"/>
 </c:url>
 <a href="${upUrl}">Вверх</a>
@@ -32,12 +32,23 @@
 
     <c:forEach var="listElement" items="${list}">
         <tr>
-            <td>${listElement.name}</td>
+            <td>
+                <c:choose>
+                    <c:when test="${fn:endsWith(listElement.name, '/')}">
+                        <c:url value="files" var="downUrl">
+                            <c:param name="path" value="${listElement.path}"/>
+                        </c:url>
+                        <a href="${downUrl}">"${listElement.name}"</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a>"${listElement.name}" </a>
+                    </c:otherwise>
+                </c:choose>
+            </td>
             <td>${listElement.size}</td>
             <td>${listElement.date}</td>
         </tr>
     </c:forEach>
-
 </table>
 </body>
 </html>
