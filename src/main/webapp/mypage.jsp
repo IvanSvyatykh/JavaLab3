@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -23,11 +25,19 @@
 </style>
 <table>
     <tr>
-        <th>File Name</th>
-        <th>URL</th>
+        <th>File</th>
         <th>Size</th>
         <th>Date</th>
     </tr>
+
+    <c:forEach var="listElement" items="${list}">
+        <tr>
+            <td>${listElement.name}</td>
+            <td>${listElement.size}</td>
+            <td>${listElement.date}</td>
+        </tr>
+    </c:forEach>
+
 </table>
 </body>
 </html>

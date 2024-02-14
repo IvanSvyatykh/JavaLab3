@@ -18,7 +18,6 @@ public class FileService {
         for (int i = 0; i < files.size(); i++) {
             elements.add(new Element(files.get(i).getName(), files.get(i).lastModified(),
                     files.get(i).length(), files.get(i).getPath()));
-
         }
 
         return elements;

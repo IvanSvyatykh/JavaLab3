@@ -1,6 +1,7 @@
 package org.example.Servlets;
 
 import jakarta.servlet.annotation.WebServlet;
+import org.example.Services.FileService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,28 +18,28 @@ import java.util.Date;
 @WebServlet(urlPatterns = {"/"})
 public class MainServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-
-        String pathFromRequest = req.getParameter("path");
-        if (req.getParameter("path") == null) {
+    public void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
+            throws IOException, ServletException {
+        String pathFromRequest = httpServletRequest.getParameter("path");
+        if (httpServletRequest.getParameter("path") == null) {
             pathFromRequest = new File(".").getCanonicalPath();
         }
 
-        req.setAttribute("currentDir", pathFromRequest);
+        httpServletRequest.setAttribute("currentDir", pathFromRequest);
+        httpServletRequest.setAttribute("list",
+                FileService.GetElements(new File(pathFromRequest)));
 
         String parentDirPath = new File(pathFromRequest).getParent();
         if (parentDirPath == null) {
             parentDirPath = pathFromRequest;
         }
-        req.setAttribute("parentDirPath", parentDirPath);
+        httpServletRequest.setAttribute("parentDirPath", parentDirPath);
 
         Date generationDate = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
 
-        req.setAttribute("generationTime", dateFormat.format(generationDate));
-        req.getRequestDispatcher("mypage.jsp").forward(req, resp);
-
+        httpServletRequest.setAttribute("generationTime", dateFormat.format(generationDate));
+        httpServletRequest.getRequestDispatcher("mypage.jsp").forward(httpServletRequest, httpServletResponse);
     }
 
 }

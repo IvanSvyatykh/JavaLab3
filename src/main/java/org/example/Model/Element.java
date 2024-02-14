@@ -16,7 +16,7 @@ public class Element implements FileElement {
 
     @Override
     public String getName() {
-        return name;
+        return name+"/";
     }
 
     @Override
