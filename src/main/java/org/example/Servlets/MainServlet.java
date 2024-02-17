@@ -1,6 +1,5 @@
 package org.example.Servlets;
 
-import jakarta.servlet.annotation.WebServlet;
 import org.example.Services.FileService;
 
 import javax.servlet.ServletException;
@@ -11,11 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet(urlPatterns = {"/files"})
 public class MainServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)

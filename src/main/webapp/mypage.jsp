@@ -41,7 +41,10 @@
                         <a href="${downUrl}">"${listElement.name}"</a>
                     </c:when>
                     <c:otherwise>
-                        <a>"${listElement.name}" </a>
+                        <c:url value="load" var="loadUrl">
+                            <c:param name="path" value="${listElement.path}"/>
+                        </c:url>
+                        <a href="${loadUrl}">"${listElement.name}"</a>
                     </c:otherwise>
                 </c:choose>
             </td>

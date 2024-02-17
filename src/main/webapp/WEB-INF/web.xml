@@ -14,4 +14,14 @@
         <url-pattern>/files</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>loadServlet</servlet-name>
+        <servlet-class>org.example.Servlets.LoadServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>loadServlet</servlet-name>
+        <url-pattern>/load</url-pattern>
+    </servlet-mapping>
+
 </web-app>
