@@ -1,5 +1,6 @@
 package org.example.Servlets;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,8 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
-
+@WebServlet("/load")
 public class LoadServlet extends HttpServlet {
 
     @Override
@@ -18,7 +21,8 @@ public class LoadServlet extends HttpServlet {
         String currentFilePath = req.getParameter("path");
         try (FileInputStream fileInputStream = new FileInputStream(currentFilePath)) {
 
-            resp.setHeader("Content-Disposition", "attachment; filename=\"" + new File(currentFilePath).getName() + "\"");
+            resp.setHeader("Content-Disposition", "attachment; filename=\"" + URLEncoder.encode(new File(currentFilePath).getName(),
+                    StandardCharsets.UTF_8.toString()) + "\"");
 
             byte[] buffer = new byte[4096];
             int bytesRead;
